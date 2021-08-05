@@ -1,0 +1,42 @@
+using System.IO;
+using System;
+using System.Collections.Generic;
+class Encryption {
+    public static int NUM = 31;
+    public static List<int> strNumbers = new List<int>(); 
+    
+    static List<int> positions(string str, int n)
+    {
+        for (int i = 0; i < n; i++) {
+ 
+            // Performing AND operation
+            // with number 31
+            int result = (str[i] & NUM);
+            result += result;
+            strNumbers.Add(result);
+        }
+        return strNumbers;
+    }
+    
+    static void encryptedChar(int encryptKey){
+        string[] alphabets = new string[27] {" ", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
+        if(encryptKey<=26){
+            Console.Write(alphabets[encryptKey]);
+        }
+        else{
+            int loopedKey = encryptKey-26;
+            string result = alphabets[loopedKey];
+            Console.Write(result.ToUpper());
+        }
+    }
+    
+    public static void Main() {
+        string str = "Santhu something";
+        int n = str.Length;
+        List <int> returnedPositions = positions(str, n);
+        foreach (int i in returnedPositions)
+            {
+                encryptedChar(i);
+            }
+    }
+}
